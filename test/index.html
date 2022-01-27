@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Mito</title>
+  <!-- <script src="../dist/mito.js"></script> -->
+</head>
+<body ontouchstart>
+  <div class="page">
+    
+  </div>
+</body>
+</html>
+
+<script type="module">
+import { Mito } from '../dist/mito.js';
+
+document.documentElement.appendChild(document.createElement('B'));
+
+const main = () => {
+  const tpl = `
+  {{if (list.length > 0)}}
+    <ul>
+    {{for (const item of list)}}
+      <li>{{item.name}}</li>
+    {{/for}}
+    </ul>
+  {{else}}
+    <div>Empty</div>
+  {{/if}}
+  `;
+  const data = {
+    list: [
+      {name: 'Alice'},
+      {name: 'Bob'},
+    ],
+  };
+
+  const mito = new Mito();
+  const dom = mito.render(tpl, data);
+  console.log(dom);
+};
+
+// document.addEventListener('DOMContentLoaded', main);
+window.onload = main;
+</script>
